@@ -96,14 +96,19 @@ public class JDOM implements Parser {
 			System.out.println("Processing route " + i + " of " + routes.size());
 			gpx.addTrack(parseRoute(routes.get(i)));
 		}
-		
+
 		return gpx;
 	}
 	
 	@SuppressWarnings("unchecked")
 	private Track parseTrack(Element trackXML) {
 		Track track = new Track();
-		
+
+        List<Element> children =  trackXML.getChildren("name", ns);
+        if (children != null && children.size() > 0) {
+            track.setName(children.get(0).getValue());
+        }
+
 		List<Element> segments = trackXML.getChildren("trkseg", ns);
 		for (int i = 0; i < segments.size(); i++) {
 			track.addSegment(parseTrackSegment(segments.get(i)));

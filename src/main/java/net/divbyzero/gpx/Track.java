@@ -42,6 +42,7 @@ import java.util.Date;
 public class Track implements Measurable {
 
 	private ArrayList<TrackSegment> segments = new ArrayList<TrackSegment>();
+	private String name;
 	
 	/**
 	 * Adds a new segment to the track.
@@ -70,6 +71,14 @@ public class Track implements Measurable {
 		return segments;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	/**
 	 * Calculates the length of the track
 	 * 
@@ -85,6 +94,20 @@ public class Track implements Measurable {
 		
 		return length;
 	}
+
+
+    /**
+     * Calculates the length of the track
+     *
+     * @return the tracks's length in meters
+     */
+    public double lengthInMiles()
+    {
+        double length = length();
+
+
+        return (length *  0.00062137);
+    }
 
 	/**
 	 * Calculates the total ascent in the track.
